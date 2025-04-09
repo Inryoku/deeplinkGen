@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Deeplink Link Generator</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        padding: 2em;
+      }
+      input,
+      button {
+        font-size: 1rem;
+        padding: 0.5em;
+        margin: 0.5em 0;
+        width: 100%;
+      }
+      a.generated-link {
+        display: block;
+        margin-top: 1em;
+        font-size: 1.2rem;
+        color: blue;
+        word-break: break-all;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Deeplink リンク生成ツール</h2>
+    <p>
+      下のフォームにディープリンクURLを入力すると、タップ可能なリンクが生成されます。
+    </p>
+    <input
+      type="text"
+      id="deeplinkInput"
+      placeholder="例: baitorunextdeeplink://job-list?mid_area=35"
+    />
+    <button onclick="generateLink()">リンクを生成</button>
+
+    <div id="output"></div>
+
+    <script>
+      function generateLink() {
+        const input = document.getElementById("deeplinkInput").value.trim();
+        const output = document.getElementById("output");
+        output.innerHTML = "";
+
+        if (input) {
+          const a = document.createElement("a");
+          a.href = input;
+          a.className = "generated-link";
+          a.innerText = "→ アプリで開く";
+          output.appendChild(a);
+        } else {
+          output.textContent = "URLを入力してください。";
+        }
+      }
+    </script>
+  </body>
+</html>
